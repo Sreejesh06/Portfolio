@@ -10,6 +10,7 @@ import { CommandMenu } from "@/components/command-menu";
 
 const Navbar = () => {
   const navItems = [
+    { title: "Resume", href: "/Sreejesh_Resume.pdf", external: true },
     { title: "Projects", href: "/projects" },
     { title: "Achievements", href: "/achievements" },
     { title: "Contact", href: "/Contact" }
@@ -66,23 +67,50 @@ const Navbar = () => {
 
         {/* Navigation links on the right */}
         <div className="ml-auto flex items-center justify-end gap-2" onMouseLeave={() => setHovered(null)}>
-          {navItems.map((item, idx) => (
-            <Link
-              className="relative px-3 py-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-300 transition-colors hover:text-neutral-900 dark:hover:text-neutral-50"
-              href={item.href}
-              key={idx}
-              onMouseEnter={() => setHovered(idx)}
-            >
-              {hovered === idx && (
-                <motion.span
-                  layoutId="nav-item-pill"
-                  className="absolute inset-0 rounded-md bg-neutral-300/25 dark:bg-neutral-800/50 -z-10"
-                  transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                />
-              )}
-              {item.title}
-            </Link>
-          ))}
+          {navItems.map((item, idx) => {
+            const isExternal = item.external;
+
+            if (isExternal) {
+              return (
+                <a
+                  className="relative px-3 py-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-300 transition-colors hover:text-neutral-900 dark:hover:text-neutral-50"
+                  href={item.href}
+                  key={idx}
+                  onMouseEnter={() => setHovered(idx)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  suppressHydrationWarning
+                >
+                  {hovered === idx && (
+                    <motion.span
+                      layoutId="nav-item-pill"
+                      className="absolute inset-0 rounded-md bg-neutral-300/25 dark:bg-neutral-800/50 -z-10"
+                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                    />
+                  )}
+                  <span suppressHydrationWarning>{item.title}</span>
+                </a>
+              );
+            }
+
+            return (
+              <Link
+                className="relative px-3 py-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-300 transition-colors hover:text-neutral-900 dark:hover:text-neutral-50"
+                href={item.href}
+                key={idx}
+                onMouseEnter={() => setHovered(idx)}
+              >
+                {hovered === idx && (
+                  <motion.span
+                    layoutId="nav-item-pill"
+                    className="absolute inset-0 rounded-md bg-neutral-300/25 dark:bg-neutral-800/50 -z-10"
+                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                  />
+                )}
+                {item.title}
+              </Link>
+            );
+          })}
 
           {/* Separator */}
           <div className="h-5 w-px bg-neutral-300/40 dark:bg-neutral-700/50 mx-1" />

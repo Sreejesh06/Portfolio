@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import Container from "@/components/containers";
 
@@ -13,6 +14,7 @@ import GetInTouch from "@/components/get-in-touch";
 import WaveformPlayer from "@/components/ui/waveform-player";
 
 export default function Home() {
+  const router = useRouter();
 
   const socials = [
     {
@@ -26,7 +28,7 @@ export default function Home() {
           <path d="M16 17H8"/>
         </svg>
       ),
-      action: () => window.open("/Sreejesh_Resume.pdf", "_blank"),
+      action: () => router.push("/resume"),
     },
     {
       name: "GitHub",

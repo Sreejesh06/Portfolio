@@ -6,6 +6,7 @@ import { Instrument_Serif } from "next/font/google";
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { ThemeProvider } from "@/components/theme-provider";
+import { SoundEffectProvider } from "@/components/sound-effect-provider";
 import FractalTree from "@/components/ui/fractal-tree";
 import { Toaster } from "sonner";
 import { FloatingMusicPlayer } from "@/components/floating-music-player";
@@ -47,6 +48,7 @@ export default function RootLayout({
         className={`${instrumentSerif.className} antialiased bg-neutral-50 dark:bg-neutral-950 transition-colors duration-300 [--pattern-fg:var(--color-neutral-200)]`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <SoundEffectProvider />
           <Analytics />
           <SpeedInsights />
           <FractalTree />
